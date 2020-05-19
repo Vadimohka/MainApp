@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/text_spot"
+        android:text="SpotID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/test1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:text="\n\nУчасток для голосования №1"/>
+    <TextView
+        android:layout_below="@+id/test1"
+        android:id="@+id/test2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:text="\nВитебск, Город областного подчинения-АТЕ"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_below="@+id/test2"
+        android:id="@+id/test3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:text="\nАдрес: ул. Димитрова 34"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_below="@+id/test3"
+        android:id="@+id/test4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="\nПомещение спортивного комплекса учреждения образования «Витебский государственный индустриально-технологический колледж"
+        android:textAlignment="center"/>
+
+</RelativeLayout>

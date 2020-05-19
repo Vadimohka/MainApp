@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"/>
+    <AutoCompleteTextView
+        android:layout_below="@id/spinner1"
+        android:id="@+id/autocompleteRegion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:completionHint="Введите Район"
+        android:completionThreshold="1"/>
+
+    <AutoCompleteTextView
+        android:layout_below="@id/autocompleteRegion"
+        android:id="@+id/autocompleteCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:completionHint="Введите город"
+        android:completionThreshold="1"/>
+
+    <AutoCompleteTextView
+        android:layout_below="@+id/autocompleteCity"
+        android:id="@+id/autocompleteStreet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:completionHint="Введите улицу"
+        android:completionThreshold="1"/>
+    <AutoCompleteTextView
+        android:layout_below="@+id/autocompleteStreet"
+        android:id="@+id/autocompleteHouse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:completionHint="Введите дом"
+        android:completionThreshold="1"/>
+    <Button
+        android:layout_below="@+id/autocompleteHouse"
+        android:id="@+id/button_find"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Найти участок" />
+</RelativeLayout>
