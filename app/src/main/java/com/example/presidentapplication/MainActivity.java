@@ -1,9 +1,13 @@
 package com.example.presidentapplication;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.presidentapplication.JSONClass.RegionList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.navigation.NavController;
@@ -22,10 +26,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
 
+    public static RegionList regionList = new RegionList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        ReadMainString();
+        ReadModelString();
+//        ReadMainString();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -38,32 +45,33 @@ public class MainActivity extends AppCompatActivity{
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        GetJsonCity();
-        GetJsonStreet();
+        //GetJsonCity();
+        //GetJsonStreet();
     }
 
 
-    public static ArrayList<String> citylist = new ArrayList<>();
-    public static ArrayList<String> streetlist = new ArrayList<>();
-    public static String mainString;
-    public static String spotId = "";
+    private void ReadModelString() {
 
-    private void ReadMainString()
-    {
         try {
-            InputStream fis = getAssets().open(".json");
-            int size = fis.available();
+            InputStream f = getAssets().open("Model.json");
+            int size = f.available();
             byte[] buffer = new byte[size];
-            fis.read(buffer);
-            fis.close();
-            mainString = new String(buffer, "UTF-8");
-            Toast.makeText(MainActivity.this, "Succes", Toast.LENGTH_SHORT).show();
+            f.read(buffer);
+            f.close();
+            String JsonString = new String(buffer, "UTF-8");
+            Gson gson = new Gson();
+            regionList = gson.fromJson(JsonString, RegionList.class);
+            Log.d("Message", regionList.toString());
         }catch (Exception e)
         {
             e.printStackTrace();
             Toast.makeText(MainActivity.this, "Error read file", Toast.LENGTH_SHORT).show();
-        }
+       }
     }
+
+    public static String spotId = "";
+    public static ArrayList<String> citylist = new ArrayList<>();
+    public static ArrayList<String> streetlist = new ArrayList<>();
 
 
 

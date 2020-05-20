@@ -22,13 +22,8 @@ import com.example.presidentapplication.MainActivity;
 import com.example.presidentapplication.R;
 import com.example.presidentapplication.SpinnerAdapter1;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
 
 
 public class HomeFragment extends Fragment {
@@ -172,7 +167,6 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
-
 
 
     private void insertDataBrest()
