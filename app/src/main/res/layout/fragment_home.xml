@@ -4,9 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/spotName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:text=""/>
+    <TextView
+        android:layout_below="@+id/spotName"
+        android:id="@+id/spotAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:text=""
+        android:textAlignment="center"/>
 
+    <TextView
+        android:layout_below="@+id/spotAddress"
+        android:id="@+id/spotInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text=""
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_below="@+id/spotInfo"
+        android:id="@+id/spotPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"/>
     <ImageView
         android:id="@+id/homespot"
+        android:layout_below="@+id/spotInfo"
         android:layout_width="match_parent"
         android:layout_height="265dp"
         android:contentDescription="HappyCity"
@@ -18,14 +49,15 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:text="Показать мой участок" />
-    <Button
-        android:layout_below="@+id/button_spot"
-        android:id="@+id/button_find"
-        android:layout_width="match_parent"
+        android:text="Найти мой участок" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:text="Найти новый участок" />
+        android:layout_gravity="bottom|end"
+        android:background="@android:color/white"
+        app:srcCompat="@drawable/ic_yandex_maps" />
+
 
 </RelativeLayout>

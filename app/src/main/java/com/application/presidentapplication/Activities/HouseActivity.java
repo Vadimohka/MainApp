@@ -52,7 +52,7 @@ public class HouseActivity extends AppCompatActivity {
         autoCompleteTextViewHouse.setAdapter(adapterHouse);
 
         readSpotJson();
-        final Intent intent = new Intent(this, SpotActivity.class);
+        final Intent intent = new Intent(this, MainActivity.class);
         Button button = findViewById(R.id.buttonToSpot);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -68,8 +68,6 @@ public class HouseActivity extends AppCompatActivity {
                 Gson gson = new GsonBuilder().create();
                 String json = gson.toJson(spot);
                 try {
-                    File f = new File("spot.json");
-                    if (f.exists()) deleteFile("spot.json");
                     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
                             openFileOutput("spot.json", MODE_PRIVATE)));
                     // пишем данные

@@ -2,6 +2,7 @@ package com.application.presidentapplication.Activities;
 
 import android.os.Bundle;
 
+
 import com.application.presidentapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -13,7 +14,6 @@ import androidx.navigation.ui.NavigationUI;
 
 
 public class MainActivity extends AppCompatActivity{
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,28 @@ public class MainActivity extends AppCompatActivity{
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-    }
 
+
+//        Button spot = findViewById(R.id.button_spot);
+//        spot.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                BufferedReader br = null;
+//                try {
+//                    br = new BufferedReader(new InputStreamReader( openFileInput("spot.json")));
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//                if(br != null)
+//                {
+//                    Intent intent = new Intent(this, SpotActivity.class);
+//                    startActivity(intent);
+//                }
+//                else
+//                {
+//                    Intent intent = new Intent(this, RegionActivity.class);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+    }
 }
