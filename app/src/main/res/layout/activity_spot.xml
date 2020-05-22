@@ -5,47 +5,51 @@
 
 
     <TextView
-        android:id="@+id/text_spot"
-        android:text="SpotID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/test1"
+        android:id="@+id/spotName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="28sp"
-        android:text="\n\nУчасток для голосования №1"/>
+        android:text=""/>
     <TextView
-        android:layout_below="@+id/test1"
-        android:id="@+id/test2"
+        android:layout_below="@+id/spotName"
+        android:id="@+id/spotAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="26sp"
-        android:text="\nВитебск, Город областного подчинения-АТЕ"
+        android:text=""
         android:textAlignment="center"/>
 
     <TextView
-        android:layout_below="@+id/test2"
-        android:id="@+id/test3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:text="\nАдрес: ул. Димитрова 34"
-        android:textAlignment="center"/>
-
-    <TextView
-        android:layout_below="@+id/test3"
-        android:id="@+id/test4"
+        android:layout_below="@+id/spotAddress"
+        android:id="@+id/spotInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="\nПомещение спортивного комплекса учреждения образования «Витебский государственный индустриально-технологический колледж"
+        android:text=""
         android:textAlignment="center"/>
+    <TextView
+        android:layout_below="@+id/spotInfo"
+        android:id="@+id/spotPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"/>
+    <Button
+        android:id = "@+id/buttonToMain"
+        android:layout_below="@id/spotInfo"
+        android:text="На главную"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        style="@style/Widget.AppCompat.Button.Colored"/>
 
+    <Button
+        android:id = "@+id/buttonToMap"
+        android:layout_below="@id/buttonToMain"
+        android:text="Открыть на карте"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        style="@style/Widget.AppCompat.Button.Colored"/>
 </RelativeLayout>

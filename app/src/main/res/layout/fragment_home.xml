@@ -4,45 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"/>
-    <AutoCompleteTextView
-        android:layout_below="@id/spinner1"
-        android:id="@+id/autocompleteRegion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:completionHint="Введите Район"
-        android:completionThreshold="1"/>
 
-    <AutoCompleteTextView
-        android:layout_below="@id/autocompleteRegion"
-        android:id="@+id/autocompleteCity"
+    <ImageView
+        android:id="@+id/homespot"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:completionHint="Введите город"
-        android:completionThreshold="1"/>
-
-    <AutoCompleteTextView
-        android:layout_below="@+id/autocompleteCity"
-        android:id="@+id/autocompleteStreet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:completionHint="Введите улицу"
-        android:completionThreshold="1"/>
-    <AutoCompleteTextView
-        android:layout_below="@+id/autocompleteStreet"
-        android:id="@+id/autocompleteHouse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:completionHint="Введите дом"
-        android:completionThreshold="1"/>
+        android:layout_height="265dp"
+        android:contentDescription="HappyCity"
+        android:src="@drawable/homespot" />
     <Button
-        android:layout_below="@+id/autocompleteHouse"
+        android:layout_below="@+id/homespot"
+        android:id="@+id/button_spot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:text="Показать мой участок" />
+    <Button
+        android:layout_below="@+id/button_spot"
         android:id="@+id/button_find"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Найти участок" />
+        android:background="@color/colorPrimary"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:text="Найти новый участок" />
+
 </RelativeLayout>
