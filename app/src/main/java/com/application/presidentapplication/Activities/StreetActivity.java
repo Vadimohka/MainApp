@@ -38,9 +38,9 @@ public class StreetActivity extends AppCompatActivity {
         Button button = findViewById(R.id.buttonToHouse);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                for (int i = 0; i < MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.size(); i++)
+                for (int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.size(); i++)
                 {
-                    if ( MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(i).streetName.equals(autoCompleteTextViewStreet.getText().toString()))
+                    if ( SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(i).streetName.equals(autoCompleteTextViewStreet.getText().toString()))
 
                     {
                         intent.putExtra("StreetId", i);
@@ -57,9 +57,9 @@ public class StreetActivity extends AppCompatActivity {
 
     private void insertStreetList(int AreaId, int DistrictId, int CityId)
     {
-        for(int i = 0; i < MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.size(); i++)
+        for(int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.size(); i++)
         {
-            streetList.add(MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(i).streetName);
+            streetList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(i).streetName);
         }
     }
 }

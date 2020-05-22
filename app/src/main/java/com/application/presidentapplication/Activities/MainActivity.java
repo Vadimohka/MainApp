@@ -2,8 +2,6 @@ package com.application.presidentapplication.Activities;
 
 import android.os.Bundle;
 
-
-import com.application.presidentapplication.JSONClass.RegionList;
 import com.application.presidentapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,8 +13,6 @@ import androidx.navigation.ui.NavigationUI;
 
 
 public class MainActivity extends AppCompatActivity{
-
-    public static RegionList regionList = new RegionList();
 
 
     @Override

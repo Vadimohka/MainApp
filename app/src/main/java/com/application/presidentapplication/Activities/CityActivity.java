@@ -38,9 +38,9 @@ public class CityActivity extends AppCompatActivity {
         Button button = findViewById(R.id.buttonToStreet);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                for (int i = 0; i < MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size(); i++) {
-                    if ((MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName + " "
-                            + MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName).equals(autoCompleteTextViewCity.getText().toString()))
+                for (int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size(); i++) {
+                    if ((SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName + " "
+                            + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName).equals(autoCompleteTextViewCity.getText().toString()))
                     {
                         intent.putExtra("CityId", i);
                         break;
@@ -56,10 +56,10 @@ public class CityActivity extends AppCompatActivity {
 
     private void insertCityList(int AreaId, int DistrictId)
     {
-        for(int i = 0; i < MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size(); i++)
+        for(int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size(); i++)
         {
-            cityList.add(MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName +  " " +
-                    MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName);
+            cityList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName +  " " +
+                    SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName);
         }
     }
 }

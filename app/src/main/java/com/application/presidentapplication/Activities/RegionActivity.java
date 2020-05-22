@@ -8,14 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
-import android.widget.Toast;
-
-import com.application.presidentapplication.JSONClass.RegionList;
 import com.application.presidentapplication.R;
 import com.application.presidentapplication.SpinnerAdapter1;
-import com.google.gson.Gson;
-
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class RegionActivity extends AppCompatActivity {
@@ -28,8 +22,6 @@ public class RegionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_region);
 
         final Intent intent = new Intent(this,DistrictActivity.class);
-
-        ReadModelString();
 
         // create spinner Area
         insertAreaList();
@@ -50,31 +42,13 @@ public class RegionActivity extends AppCompatActivity {
         });
     }
 
-    private void ReadModelString() {
-
-        try {
-            InputStream f = getAssets().open("testAll.json");
-            int size = f.available();
-            byte[] buffer = new byte[size];
-            f.read(buffer);
-            f.close();
-            String JsonString = new String(buffer, "UTF-8");
-            Gson gson = new Gson();
-            MainActivity.regionList = gson.fromJson(JsonString, RegionList.class);
-            Toast.makeText(RegionActivity.this, "Secces", Toast.LENGTH_SHORT).show();
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-            Toast.makeText(RegionActivity.this, "Error read file", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     private void insertAreaList()
     {
         areaList.add("Выберите область");
-        for (int i = 0; i < MainActivity.regionList.regionList.size(); i++)
+        for (int i = 0; i < SplashActivity.regionList.regionList.size(); i++)
         {
-            areaList.add(MainActivity.regionList.regionList.get(i).regionName);
+            areaList.add(SplashActivity.regionList.regionList.get(i).regionName);
         }
     }
 }

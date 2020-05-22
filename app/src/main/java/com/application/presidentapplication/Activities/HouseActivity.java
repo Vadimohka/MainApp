@@ -57,10 +57,10 @@ public class HouseActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String SpotId = null;
-                for (int i = 0; i < MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.size(); i++) {
-                    if ((MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).houseNumber).equals(autoCompleteTextViewHouse.getText().toString()))
+                for (int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.size(); i++) {
+                    if ((SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).houseNumber).equals(autoCompleteTextViewHouse.getText().toString()))
                     {
-                        SpotId = MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).spotId;
+                        SpotId = SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).spotId;
                         break;
                     }
                 }
@@ -79,10 +79,6 @@ public class HouseActivity extends AppCompatActivity {
                 }catch(IOException ex){
                     ex.printStackTrace();
                 }
-//                intent.putExtra("SpotAddress",spot.address);
-//                intent.putExtra("SpotInfo",spot.spotInfo);
-//                intent.putExtra("SpotName",spot.spotName);
-//                intent.putExtra("SpotPhoneNumber",spot.phoneNumber);
                 startActivity(intent);
             }
         });
@@ -109,9 +105,9 @@ public class HouseActivity extends AppCompatActivity {
 
     private void insertHouseList(int AreaId, int DistrictId, int CityId, int StreetId)
     {
-        for(int i = 0; i < MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.size(); i++)
+        for(int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.size(); i++)
         {
-            houseList.add(MainActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).houseNumber);
+            houseList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).houseNumber);
         }
     }
 }

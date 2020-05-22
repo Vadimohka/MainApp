@@ -35,9 +35,9 @@ public class DistrictActivity extends AppCompatActivity {
         Button button = findViewById(R.id.buttonToCity);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                for(int i = 0; i < MainActivity.regionList.regionList.get(AreaId).districtList.size(); i++)
+                for(int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.size(); i++)
                 {
-                    if( MainActivity.regionList.regionList.get(AreaId).districtList.get(i).districtName.equals(autoCompleteTextViewDistrict.getText().toString()))
+                    if( SplashActivity.regionList.regionList.get(AreaId).districtList.get(i).districtName.equals(autoCompleteTextViewDistrict.getText().toString()))
                     {
                         intent.putExtra("DistrictId", i);
                         break;
@@ -51,9 +51,9 @@ public class DistrictActivity extends AppCompatActivity {
     }
     private void insertDistrictList(int id)
     {
-        for(int j = 0; j < MainActivity.regionList.regionList.get(id).districtList.size(); j++)
+        for(int j = 0; j < SplashActivity.regionList.regionList.get(id).districtList.size(); j++)
         {
-            districtList.add(MainActivity.regionList.regionList.get(id).districtList.get(j).districtName);
+            districtList.add(SplashActivity.regionList.regionList.get(id).districtList.get(j).districtName);
         }
     }
 }
