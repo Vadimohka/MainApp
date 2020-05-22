@@ -55,7 +55,6 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
         android:background="@android:color/white"
         app:srcCompat="@drawable/ic_yandex_maps" />
 

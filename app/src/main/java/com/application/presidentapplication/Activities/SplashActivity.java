@@ -7,6 +7,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.application.presidentapplication.JSONClass.RegionList;
+import com.application.presidentapplication.R;
 import com.google.gson.Gson;
 
 import java.io.InputStream;
@@ -17,13 +18,14 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
         ReadModelString();
     }
+
 
     private void ReadModelString() {
 
