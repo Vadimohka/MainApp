@@ -1,24 +1,17 @@
 package com.application.presidentapplication.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.application.presidentapplication.JSONClass.RegionList;
 import com.application.presidentapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.gson.Gson;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import java.io.InputStream;
-
 
 
 public class MainActivity extends AppCompatActivity{
