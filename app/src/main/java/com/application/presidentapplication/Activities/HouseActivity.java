@@ -68,6 +68,7 @@ public class HouseActivity extends AppCompatActivity {
                 Gson gson = new GsonBuilder().create();
                 String json = gson.toJson(spot);
                 try {
+                    deleteFile("spot.json");
                     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
                             openFileOutput("spot.json", MODE_PRIVATE)));
                     // пишем данные

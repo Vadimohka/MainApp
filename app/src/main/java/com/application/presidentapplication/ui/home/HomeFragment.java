@@ -41,22 +41,20 @@ public class HomeFragment extends Fragment {
             // открываем поток для чтения
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     getActivity().openFileInput("spot.json")));
-            if (br != null) {
-                String jsonString = br.readLine();
-                Gson gson = new Gson();
-                spot = gson.fromJson(jsonString, Spot.class);
-                br.close();
-                TextView textViewAddress = root.findViewById(R.id.spotAddress);
-                textViewAddress.setText(spot.address);
-                TextView textViewInfo = root.findViewById(R.id.spotInfo);
-                textViewInfo.setText(spot.spotInfo);
-                TextView textViewName = root.findViewById(R.id.spotName);
-                textViewName.setText(spot.spotName);
-                TextView textViewPhoneNumber = root.findViewById(R.id.spotPhoneNumber);
-                textViewPhoneNumber.setText(spot.phoneNumber);
-                ImageView imageView = root.findViewById(R.id.homespot);
-                imageView.setVisibility(View.GONE);
-            }
+            String jsonString = br.readLine();
+            Gson gson = new Gson();
+            spot = gson.fromJson(jsonString, Spot.class);
+            br.close();
+            TextView textViewAddress = root.findViewById(R.id.spotAddress);
+            textViewAddress.setText(spot.address);
+            TextView textViewInfo = root.findViewById(R.id.spotInfo);
+            textViewInfo.setText(spot.spotInfo);
+            TextView textViewName = root.findViewById(R.id.spotName);
+            textViewName.setText(spot.spotName);
+            TextView textViewPhoneNumber = root.findViewById(R.id.spotPhoneNumber);
+            textViewPhoneNumber.setText(spot.phoneNumber);
+            ImageView imageView = root.findViewById(R.id.homespot);
+            imageView.setVisibility(View.GONE);
 
         } catch (IOException e) {
             e.printStackTrace();
