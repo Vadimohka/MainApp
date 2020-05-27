@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -35,15 +34,9 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textAlignment="center"/>
-    <ImageView
-        android:id="@+id/homespot"
-        android:layout_below="@+id/spotInfo"
-        android:layout_width="match_parent"
-        android:layout_height="265dp"
-        android:contentDescription="HappyCity"
-        android:src="@drawable/homespot" />
+
     <Button
-        android:layout_below="@+id/homespot"
+        android:layout_below="@+id/spotPhoneNumber"
         android:id="@+id/button_spot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,12 +44,24 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:text="Найти мой участок" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/button_map"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        app:srcCompat="@drawable/ic_yandex_maps" />
-
+        android:layout_below="@id/button_spot"
+        android:layout_centerHorizontal="true"
+        android:text="Построить маршрут"
+        android:textColor="@android:color/white"
+        android:background="#03A9F4"
+        android:visibility="gone"
+        style="@style/Widget.AppCompat.Button.Colored"
+        />
+    <ImageView
+        android:id="@+id/homespot"
+        android:layout_width="match_parent"
+        android:layout_below="@id/button_spot"
+        android:layout_height="wrap_content"
+        android:contentDescription="HappyCity"
+        android:src="@drawable/homespot" />
 
 </RelativeLayout>

@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
+
 import com.application.presidentapplication.R;
-import com.application.presidentapplication.SpinnerAdapter1;
+import com.application.presidentapplication.Adapters.SpinnerAdapter;
 import java.util.ArrayList;
 
 public class RegionActivity extends AppCompatActivity {
@@ -26,7 +26,7 @@ public class RegionActivity extends AppCompatActivity {
         // create spinner Area
         insertAreaList();
         final Spinner spinner1 = findViewById(R.id.spinner1);
-        SpinnerAdapter adapter1 = new SpinnerAdapter1(areaList, this);
+        android.widget.SpinnerAdapter adapter1 = new SpinnerAdapter(areaList, this);
         spinner1.setAdapter(adapter1);
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

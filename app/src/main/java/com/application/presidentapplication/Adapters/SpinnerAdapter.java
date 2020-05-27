@@ -1,4 +1,4 @@
-package com.application.presidentapplication;
+package com.application.presidentapplication.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,14 +8,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.application.presidentapplication.R;
+
 import java.util.List;
 
-public class SpinnerAdapter1 extends BaseAdapter {
+public class SpinnerAdapter extends BaseAdapter {
     private List<String> lstData;
     private Activity activity;
     private LayoutInflater inflater;
 
-    public SpinnerAdapter1(List<String> lstData, Activity activity) {
+    public SpinnerAdapter(List<String> lstData, Activity activity) {
         this.lstData = lstData;
         this.activity = activity;
         this.inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

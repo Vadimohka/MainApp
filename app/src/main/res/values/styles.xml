@@ -11,4 +11,8 @@
     <style name="AppTheme.Launcher">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
+
+    <style name="ContentLoadingProgress">
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+    </style>
 </resources>

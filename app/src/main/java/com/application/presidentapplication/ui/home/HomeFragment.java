@@ -17,8 +17,6 @@ import androidx.fragment.app.Fragment;
 import com.application.presidentapplication.Activities.RegionActivity;
 import com.application.presidentapplication.JSONClass.Spot;
 import com.application.presidentapplication.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -30,12 +28,12 @@ import java.io.InputStreamReader;
 public class HomeFragment extends Fragment {
 
     Spot spot = new Spot();
-
+    boolean flag = false;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        View root = inflater.inflate(R.layout.fragment_home_begin, container, false);
 
         try {
             // открываем поток для чтения
@@ -55,10 +53,28 @@ public class HomeFragment extends Fragment {
             textViewPhoneNumber.setText(spot.phoneNumber);
             ImageView imageView = root.findViewById(R.id.homespot);
             imageView.setVisibility(View.GONE);
-
+            flag = true;
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //DO NOT TOUCH
+        //MAP
+        Button map = root.findViewById(R.id.button_map);
+        if (flag)
+            map.setVisibility(View.VISIBLE);
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View veiw) {
+                String geoUriString = "geo:52.459343, 31.004553?z=5";
+                Uri geoUri = Uri.parse(geoUriString);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, geoUri);
+                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+            }
+        });
+        //END MAP
 
         Button find = root.findViewById(R.id.button_spot);
         find.setOnClickListener(new View.OnClickListener() {
@@ -68,19 +84,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        FloatingActionButton fab = root.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String geoUriString = "geo:52.459343, 31.004553?z=2";
-                Uri geoUri = Uri.parse(geoUriString);
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, geoUri);
-                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivity(mapIntent);
-
-                }
-            }
-        });
         return root;
     }
 }
