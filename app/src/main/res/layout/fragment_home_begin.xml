@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="28sp"
+        android:textSize="20dp"
         android:text=""/>
     <TextView
         android:layout_below="@+id/spotName"
         android:id="@+id/spotAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="26sp"
+        android:textSize="16dp"
         android:text=""
         android:textAlignment="center"/>
 
@@ -24,7 +24,7 @@
         android:id="@+id/spotInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="14dp"
         android:text=""
         android:textAlignment="center"/>
     <TextView
