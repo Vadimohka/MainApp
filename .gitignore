@@ -12,8 +12,6 @@
 /captures
 .externalNativeBuild
 .cxx
-/app/src/main/assets/1.json
-/app/src/main/assets/Cities.json
-/app/src/main/assets/Spots.json
-/app/src/main/assets/Streets.json
-/app/src/main/assets/VadimJsonAll.json
+/app/release
+/app/src/main/assets/
+/app/src/main/res/
