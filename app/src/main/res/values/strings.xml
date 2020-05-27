@@ -6,4 +6,12 @@
     <string name="title_spot">Информация об участке</string>
     <string name="title_activity_main2">Main2Activity</string>
 
+    <!--RSS STRINGS -->
+    <string name="rss_default_placeholder">Название</string>
+    <string name="wifi">Вай-фай почтальон уже въ пути.</string>
+    <string name="mobile_data">Почтовые голуби уже въ пути.</string>
+
+    <string name="no_internet">Дорогу к вам замело снегомъ , а голуби мерзнутъ.</string>
+    <string name="no_internet_short">Дорогу замело.</string>
+    <string name="internet_short">Голуби долетаютъ.</string>
 </resources>
