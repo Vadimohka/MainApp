@@ -144,7 +144,6 @@ public class RSSFeedControl extends AsyncTask<Void, Integer, Boolean> {
                                         if (subss.length() > 3 && !subss.contains("a href") && !subss.contains("br clear"))
                                             desc.append(subss);
                                 }
-                            //rssPost.setContent(current.getTextContent());
                             rssPost.setContent(desc.toString());
                         }
                         else if (current.getNodeName().equalsIgnoreCase("pubDate")) {

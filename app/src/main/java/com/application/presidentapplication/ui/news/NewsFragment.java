@@ -3,22 +3,15 @@ package com.application.presidentapplication.ui.news;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
 import androidx.annotation.NonNull;
-
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-
 import com.application.presidentapplication.DatabaseWork.RSSDatabase;
 import com.application.presidentapplication.DatabaseWork.RSSDatabaseBuilder;
 import com.application.presidentapplication.Network.NetworkStateReader;
@@ -35,7 +28,7 @@ public class NewsFragment extends Fragment {
     private SwipeRefreshLayout mSwipeLayout;
     private SharedPreferences sharedPref;
 
-    private String RSS = "https://www.belta.by/rss/tag/161";
+    private String RSS = "https://www.belta.by/rss/tag/893";
     private static final String APP_PREFERENCES = "preferences";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,11 +38,11 @@ public class NewsFragment extends Fragment {
 
         db = RSSDatabaseBuilder.getInstance(getActivity());
         mRecyclerView = root.findViewById(R.id.post_view);
-        mSwipeLayout = root.findViewById(R.id.swipeRefreshLayout);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         mRecyclerView.setItemAnimator(itemAnimator);
 
+        mSwipeLayout = root.findViewById(R.id.swipeRefreshLayout);
         mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -57,7 +50,7 @@ public class NewsFragment extends Fragment {
             }
         });
 
-        sharedPref = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        sharedPref = requireActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         loadPosts();
 
         return root;
