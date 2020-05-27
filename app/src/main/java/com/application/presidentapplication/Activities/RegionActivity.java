@@ -22,7 +22,7 @@ public class RegionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_region);
 
         final Intent intent = new Intent(this,DistrictActivity.class);
-
+        final Intent toStreet = new Intent(this, StreetActivity.class);
         // create spinner Area
         insertAreaList();
         final Spinner spinner1 = findViewById(R.id.spinner1);
@@ -32,8 +32,18 @@ public class RegionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 if (position != 0) {
-                    intent.putExtra("AreaId", spinner1.getSelectedItemPosition() - 1);
-                    startActivity(intent);
+                    if (position  == 5)
+                    {
+                        //Minsk = 4
+                        toStreet.putExtra("AreaId",4);
+                        toStreet.putExtra("DistrictId",0);
+                        toStreet.putExtra("CityId",0);
+                        startActivity(toStreet);
+                    }
+                    else {
+                        intent.putExtra("AreaId", spinner1.getSelectedItemPosition() - 1);
+                        startActivity(intent);
+                    }
                 }
             }
 

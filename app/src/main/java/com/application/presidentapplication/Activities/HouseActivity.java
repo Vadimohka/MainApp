@@ -79,6 +79,7 @@ public class HouseActivity extends AppCompatActivity {
                     ex.printStackTrace();
                 }
                 startActivity(intent);
+                finish();
             }
         });
     }
