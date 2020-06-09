@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.application.presidentapplication.JSONClass.Spot;
@@ -19,8 +17,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
@@ -43,28 +39,18 @@ public class HouseActivity extends AppCompatActivity {
         final int DistrictId = arguments.getInt("DistrictId");
         final int CityId = arguments.getInt("CityId");
         final int StreetId = arguments.getInt("StreetId");
-
-        insertHouseList(AreaId, DistrictId, CityId, StreetId);
-
-        final AutoCompleteTextView autoCompleteTextViewHouse = findViewById(R.id.autocompleteHouse);
-        ArrayAdapter<String> adapterHouse =
-                new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, houseList);
-        autoCompleteTextViewHouse.setAdapter(adapterHouse);
-
-        readSpotJson();
         final Intent intent = new Intent(this, MainActivity.class);
-        Button button = findViewById(R.id.buttonToSpot);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String SpotId = null;
-                for (int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.size(); i++) {
-                    if ((SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).houseNumber).equals(autoCompleteTextViewHouse.getText().toString()))
-                    {
-                        SpotId = SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).spotId;
-                        break;
-                    }
-                }
-                Spot spot = dictionary.get(SpotId);
+        insertHouseList(AreaId, DistrictId, CityId, StreetId);
+        GridView GList = findViewById(R.id.gridview_house);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, houseList);
+        GList.setAdapter(adapter);
+
+        GList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                readSpotJson();
+                Spot spot = dictionary.get(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(position).spotId);
                 Gson gson = new GsonBuilder().create();
                 String json = gson.toJson(spot);
                 try {
@@ -75,7 +61,7 @@ public class HouseActivity extends AppCompatActivity {
                     bw.write(json);
                     // закрываем поток
                     bw.close();
-                }catch(IOException ex){
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
                 startActivity(intent);

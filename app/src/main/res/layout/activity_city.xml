@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <AutoCompleteTextView
-        android:id="@+id/autocompleteCity"
+    <EditText
+        android:id="@+id/search_city"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search"/>
+
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:completionHint="Введите Район"
-        android:completionThreshold="1"/>
-    <Button
-        android:id = "@+id/buttonToStreet"
-        android:layout_below="@id/autocompleteCity"
-        android:text="Подтвердить выбора города"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/list_city"/>
 
-</RelativeLayout>
+</LinearLayout>

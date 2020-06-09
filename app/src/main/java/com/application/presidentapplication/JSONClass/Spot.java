@@ -5,4 +5,6 @@ public class Spot {
     public String spotInfo;
     public String spotName;
     public String phoneNumber;
+    public String X;
+    public String Y;
 }
