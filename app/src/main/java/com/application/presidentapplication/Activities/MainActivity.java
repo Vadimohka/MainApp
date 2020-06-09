@@ -1,10 +1,7 @@
 package com.application.presidentapplication.Activities;
-
 import android.os.Bundle;
-
 import com.application.presidentapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
