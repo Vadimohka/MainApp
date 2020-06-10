@@ -21,10 +21,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
+        ReadModelString();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        ReadModelString();
     }
 
 
@@ -39,11 +39,9 @@ public class SplashActivity extends AppCompatActivity {
             String JsonString = new String(buffer, StandardCharsets.UTF_8);
             Gson gson = new Gson();
             regionList = gson.fromJson(JsonString, RegionList.class);
-            Toast.makeText(SplashActivity.this, "Secces", Toast.LENGTH_SHORT).show();
         }catch (Exception e)
         {
             e.printStackTrace();
-            Toast.makeText(SplashActivity.this, "Error read file", Toast.LENGTH_SHORT).show();
         }
     }
 }

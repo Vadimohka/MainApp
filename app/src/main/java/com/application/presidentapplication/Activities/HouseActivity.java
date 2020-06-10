@@ -82,11 +82,9 @@ public class HouseActivity extends AppCompatActivity {
             f.close();
             String JsonString = new String(buffer, StandardCharsets.UTF_8);
             dictionary = new Gson().fromJson(JsonString, new TypeToken<HashMap<String,Spot>>(){}.getType());
-            Toast.makeText(this,"Succes read Spots", Toast.LENGTH_SHORT).show();
         }catch(Exception e)
         {
             e.printStackTrace();
-            Toast.makeText(this,"Error read Spots", Toast.LENGTH_SHORT).show();
         }
     }
 
