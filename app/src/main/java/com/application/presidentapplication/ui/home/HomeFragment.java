@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment {
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View veiw) {
-                String geoUriString = "geo:52.459343, 31.004553?z=5";
+                String geoUriString = "geo:"+ spot.X + ", " + spot.Y + "?z=7";
                 Uri geoUri = Uri.parse(geoUriString);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, geoUri);
                 if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
