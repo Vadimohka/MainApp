@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class RegionActivity extends AppCompatActivity {
 
-    ArrayList<String> areaList = new ArrayList<String>();
+    ArrayList<String> areaList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class RegionActivity extends AppCompatActivity {
         insertAreaList();
         final ListView lv = findViewById(R.id.list_ragion);
 
-        ArrayAdapter<String> adapterDistrict = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, areaList);
+        ArrayAdapter<String> adapterDistrict = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, areaList);
         lv.setAdapter(adapterDistrict);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){

@@ -23,6 +23,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -57,7 +58,8 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 String value = adapter.getItem(position);
-                for (int i = 0; i < cities.length; i++)
+                for (int i = 0; i < cities.length; i++) {
+                    assert value != null;
                     if( value.equals(cities[i])) {
                         if (!(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).citySpotId == null)) {
                             readSpotJson();
@@ -83,6 +85,7 @@ public class CityActivity extends AppCompatActivity {
                         intent.putExtra("AreaId", AreaId);
                         startActivity(intent);
                     }
+                }
             }
         });
 
@@ -138,7 +141,7 @@ public class CityActivity extends AppCompatActivity {
             byte[] buffer = new byte[size];
             f.read(buffer);
             f.close();
-            String JsonString = new String(buffer, "UTF-8");
+            String JsonString = new String(buffer, StandardCharsets.UTF_8);
             dictionary = new Gson().fromJson(JsonString, new TypeToken<HashMap<String,Spot>>(){}.getType());
             Toast.makeText(this,"Succes read Spots", Toast.LENGTH_SHORT).show();
         }catch(Exception e)

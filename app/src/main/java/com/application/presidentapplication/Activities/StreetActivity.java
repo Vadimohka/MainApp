@@ -30,6 +30,7 @@ public class StreetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_street);
 
         Bundle arguments = getIntent().getExtras();
+        assert arguments != null;
         final int AreaId = arguments.getInt("AreaId");
         final int DistrictId = arguments.getInt("DistrictId");
         final int CityId = arguments.getInt("CityId");
@@ -47,7 +48,8 @@ public class StreetActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
                 String value = adapter.getItem(position);
-                for (int i = 0; i < streets.length; i++)
+                for (int i = 0; i < streets.length; i++) {
+                    assert value != null;
                     if( value.equals(streets[i])) {
 
                         intent.putExtra("StreetId", i);
@@ -56,6 +58,7 @@ public class StreetActivity extends AppCompatActivity {
                         intent.putExtra("AreaId", AreaId);
                         startActivity(intent);
                     }
+                }
             }
         });
         editText.addTextChangedListener(new TextWatcher() {

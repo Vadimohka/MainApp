@@ -11,6 +11,7 @@ import com.application.presidentapplication.R;
 import com.google.gson.Gson;
 
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -35,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
             byte[] buffer = new byte[size];
             f.read(buffer);
             f.close();
-            String JsonString = new String(buffer, "UTF-8");
+            String JsonString = new String(buffer, StandardCharsets.UTF_8);
             Gson gson = new Gson();
             regionList = gson.fromJson(JsonString, RegionList.class);
             Toast.makeText(SplashActivity.this, "Secces", Toast.LENGTH_SHORT).show();

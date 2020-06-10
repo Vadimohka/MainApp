@@ -20,13 +20,14 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class HouseActivity extends AppCompatActivity {
 
-    ArrayList<String> houseList = new ArrayList<String>();
+    ArrayList<String> houseList = new ArrayList<>();
     HashMap<String,Spot> dictionary;
 
     @Override
@@ -35,6 +36,7 @@ public class HouseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_house);
 
         Bundle arguments = getIntent().getExtras();
+        assert arguments != null;
         final int AreaId = arguments.getInt("AreaId");
         final int DistrictId = arguments.getInt("DistrictId");
         final int CityId = arguments.getInt("CityId");
@@ -42,7 +44,7 @@ public class HouseActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, MainActivity.class);
         insertHouseList(AreaId, DistrictId, CityId, StreetId);
         GridView GList = findViewById(R.id.gridview_house);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, houseList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, houseList);
         GList.setAdapter(adapter);
 
         GList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,7 +80,7 @@ public class HouseActivity extends AppCompatActivity {
             byte[] buffer = new byte[size];
             f.read(buffer);
             f.close();
-            String JsonString = new String(buffer, "UTF-8");
+            String JsonString = new String(buffer, StandardCharsets.UTF_8);
             dictionary = new Gson().fromJson(JsonString, new TypeToken<HashMap<String,Spot>>(){}.getType());
             Toast.makeText(this,"Succes read Spots", Toast.LENGTH_SHORT).show();
         }catch(Exception e)

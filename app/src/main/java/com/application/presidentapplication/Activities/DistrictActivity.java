@@ -31,6 +31,7 @@ public class DistrictActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_district);
         final Bundle arguments = getIntent().getExtras();
+        assert arguments != null;
         final int AreaId = arguments.getInt("AreaId");
         insertDistrictList(AreaId);
 
@@ -45,13 +46,15 @@ public class DistrictActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
                 String value = adapter.getItem(position);
-                for (int i = 0; i < districts.length; i++)
+                for (int i = 0; i < districts.length; i++) {
+                    assert value != null;
                     if( value.equals(districts[i]))
                     {
                         intent.putExtra("DistrictId", i);
                         intent.putExtra("AreaId",AreaId);
                         startActivity(intent);
                     }
+                }
             }
         });
 
