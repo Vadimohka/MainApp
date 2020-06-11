@@ -80,10 +80,12 @@ public class CityActivity extends AppCompatActivity {
                             startActivity(toMain);
                             finish();
                         }
-                        intent.putExtra("CityId", i);
-                        intent.putExtra("DistrictId", DistrictId);
-                        intent.putExtra("AreaId", AreaId);
-                        startActivity(intent);
+                        else {
+                            intent.putExtra("CityId", i);
+                            intent.putExtra("DistrictId", DistrictId);
+                            intent.putExtra("AreaId", AreaId);
+                            startActivity(intent);
+                        }
                     }
                 }
             }
