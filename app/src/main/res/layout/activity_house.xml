@@ -6,10 +6,10 @@
     <GridView
         android:id="@+id/gridview_house"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/darker_gray"
         android:numColumns="4"
-        android:verticalSpacing="16dp"
-        android:horizontalSpacing="16dp"
-        android:stretchMode="columnWidth" />
+        android:gravity="center"
+        android:stretchMode="columnWidth"/>
 
 </LinearLayout>

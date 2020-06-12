@@ -27,7 +27,7 @@
                 android:layout_marginTop="-5dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Александр Григорьевич Лукашенко"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="26dp" />
 
             <TextView
@@ -74,7 +74,7 @@
                 android:layout_marginLeft="135dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Виктор Дмитриевич Бабарико"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="26dp" />
 
             <TextView
@@ -120,7 +120,7 @@
                 android:layout_marginLeft="130dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Валерий Вильямович Цепкало"
-                android:textColor="#000000"
+                android:textColor="@android:color/black"
                 android:textSize="26dp" />
 
             <TextView

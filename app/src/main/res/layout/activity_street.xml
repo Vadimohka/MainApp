@@ -5,11 +5,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/search_street"
-        android:layout_width="fill_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search"/>
+        android:background="@drawable/background_border"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/ImgaeSearch"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+        <EditText
+            android:id="@+id/search_street"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:ellipsize="start"
+            android:background="@null"
+            android:layout_toEndOf="@id/ImgaeSearch"
+            android:hint="Найти улицу" />
+    </RelativeLayout>
 
     <ListView
         android:layout_width="match_parent"
