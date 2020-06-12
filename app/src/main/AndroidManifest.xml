@@ -3,8 +3,8 @@
     package="com.application.presidentapplication">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -18,9 +18,10 @@
         <activity android:name=".Activities.CityActivity" />
         <activity android:name=".Activities.DistrictActivity" />
         <activity android:name=".Activities.RegionActivity" />
-        <activity android:name=".Activities.RSSPostActivity"/>
+        <activity android:name=".Activities.RSSPostActivity" />
         <activity
             android:name=".Activities.MainActivity"
+            android:noHistory="true"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,10 +31,11 @@
         </activity>
         <activity
             android:name=".Activities.SplashActivity"
-            android:theme="@style/AppTheme.Splash"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

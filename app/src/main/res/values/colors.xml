@@ -3,4 +3,5 @@
     <color name="colorPrimary">#00E676</color>
     <color name="colorPrimaryDark">#008577</color>
     <color name="colorAccent">@android:color/white</color>
+    <color name="actionbar_text_color">@android:color/black</color>
 </resources>

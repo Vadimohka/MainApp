@@ -12,18 +12,20 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.application.presidentapplication.JSONClass.Region;
 import com.application.presidentapplication.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class DistrictActivity extends AppCompatActivity {
 
-    ArrayList<String> listItems;
-    String[] districts;
+    ArrayList<String> districtList = new ArrayList<>();
     ArrayAdapter<String> adapter;
     ListView listView;
     EditText editText;
+    int AreaId;
 
 
     @Override
@@ -32,12 +34,14 @@ public class DistrictActivity extends AppCompatActivity {
         setContentView(R.layout.activity_district);
         final Bundle arguments = getIntent().getExtras();
         assert arguments != null;
-        final int AreaId = arguments.getInt("AreaId");
+        AreaId = arguments.getInt("AreaId");
         insertDistrictList(AreaId);
 
         listView = findViewById(R.id.list_district);
         editText = findViewById(R.id.search_district);
-        initlist();
+
+        adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtitem, districtList);
+        listView.setAdapter(adapter);
 
         final Intent intent = new Intent(this, CityActivity.class);
 
@@ -46,13 +50,14 @@ public class DistrictActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
                 String value = adapter.getItem(position);
-                for (int i = 0; i < districts.length; i++) {
+                for (int i = 0; i < districtList.size(); i++) {
                     assert value != null;
-                    if( value.equals(districts[i]))
+                    if( value.equals(districtList.get(i)))
                     {
                         intent.putExtra("DistrictId", i);
                         intent.putExtra("AreaId",AreaId);
                         startActivity(intent);
+                        finish();
                     }
                 }
             }
@@ -65,11 +70,7 @@ public class DistrictActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals("")){
-                    initlist();
-                } else {
-                    searchItem(s.toString());
-                }
+                DistrictActivity.this.adapter.getFilter().filter(s);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -77,25 +78,17 @@ public class DistrictActivity extends AppCompatActivity {
         });
     }
 
-    public void searchItem(String textToSearch){
-        for(String item: districts){
-            if(!item.contains(textToSearch)){
-                listItems.remove(item);
-            }
-        }
-        adapter.notifyDataSetChanged();
-    }
-
-    public void initlist(){
-        listItems = new ArrayList<>(Arrays.asList(districts));
-        adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtitem, listItems);
-        listView.setAdapter(adapter);
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, RegionActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void insertDistrictList(int id) {
-        districts = new String[SplashActivity.regionList.regionList.get(id).districtList.size()];
         for (int j = 0; j < SplashActivity.regionList.regionList.get(id).districtList.size(); j++) {
-            districts[j] = SplashActivity.regionList.regionList.get(id).districtList.get(j).districtName.toLowerCase();
+            districtList.add(SplashActivity.regionList.regionList.get(id).districtList.get(j).districtName);
         }
+        Collections.sort(districtList);
     }
 }

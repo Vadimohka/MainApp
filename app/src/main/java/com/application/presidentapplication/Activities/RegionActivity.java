@@ -23,7 +23,6 @@ public class RegionActivity extends AppCompatActivity {
 
         final Intent intent = new Intent(this,DistrictActivity.class);
         final Intent toStreet = new Intent(this, StreetActivity.class);
-        // create spinner Area
         insertAreaList();
         final ListView lv = findViewById(R.id.list_ragion);
 
@@ -41,16 +40,24 @@ public class RegionActivity extends AppCompatActivity {
                     toStreet.putExtra("CityId", 0);
                     toStreet.putExtra("AreaId", position);
                     startActivity(toStreet);
+                    finish();
                 }
                 else
                 {
                     intent.putExtra("AreaId", position);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     private void insertAreaList()
     {

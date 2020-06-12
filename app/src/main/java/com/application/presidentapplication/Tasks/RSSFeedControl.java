@@ -38,11 +38,11 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class RSSFeedControl extends AsyncTask<Void, Integer, Boolean> {
-    private final Context context;
+    private  Context context;
     private final String address;
-    private final SwipeRefreshLayout mSwipeLayout;
+    private SwipeRefreshLayout mSwipeLayout;
     private ArrayList<RSSPost> loaded_posts;
-    private final RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
     private ArrayList<WebView> webViews = new ArrayList<>();
     private final RSSDatabase db;
 
@@ -100,8 +100,6 @@ public class RSSFeedControl extends AsyncTask<Void, Integer, Boolean> {
 
     private Document tryConnection(String address) {
         try {
-            if(!address.startsWith("http://") && !address.startsWith("https://"))
-                address = "http://" + address;
             URL url = new URL(address);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
@@ -132,7 +130,8 @@ public class RSSFeedControl extends AsyncTask<Void, Integer, Boolean> {
                     for (int j = 0; j < itemchilds.getLength(); j++) {
                         Node current = itemchilds.item(j);
                         if (current.getNodeName().equalsIgnoreCase("title")) {
-                            rssPost.setTitle(current.getTextContent());
+                            String title = current.getTextContent();
+                            rssPost.setTitle(title.trim());
                         }
                         else if (current.getNodeName().equalsIgnoreCase("description")) {
                             String[] s = current.getTextContent().split(">");
@@ -146,19 +145,19 @@ public class RSSFeedControl extends AsyncTask<Void, Integer, Boolean> {
                                 }
                             rssPost.setContent(desc.toString());
                         }
-                        else if (current.getNodeName().equalsIgnoreCase("pubDate")) {
-                            try {
-                                SimpleDateFormat dt = new SimpleDateFormat("dd MMM yyyy, HH:mm");
-                                SimpleDateFormat dt1 = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss Z");
-                                Date date = dt1.parse(current.getTextContent());
-                                rssPost.setDate(dt.format(Objects.requireNonNull(date)));
-                            }
-                            catch (java.text.ParseException e)
-                            {
-                                e.printStackTrace();
-                                rssPost.setDate(current.getTextContent());
-                            }
-                        }
+//                        else if (current.getNodeName().equalsIgnoreCase("pubDate")) {
+//                            try {
+//                                SimpleDateFormat dt = new SimpleDateFormat("dd MMMM, H:m");
+//                                SimpleDateFormat dt1 = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
+//                                Date date = dt1.parse(current.getTextContent());
+//                                rssPost.setDate(dt.format(Objects.requireNonNull(date)));
+//                            }
+//                            catch (java.text.ParseException e)
+//                            {
+//                                e.printStackTrace();
+//                                rssPost.setDate(current.getTextContent());
+//                            }
+//                        }
                         else if (current.getNodeName().equalsIgnoreCase("link")) {
                             rssPost.setLink(current.getTextContent());
                         }

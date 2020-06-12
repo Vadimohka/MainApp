@@ -8,5 +8,4 @@ public class City {
     public String citySpotId;
     public String categoryName;
     public String cityCategory;
-
 }

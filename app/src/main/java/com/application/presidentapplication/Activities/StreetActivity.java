@@ -14,15 +14,16 @@ import android.widget.ListView;
 import com.application.presidentapplication.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class StreetActivity extends AppCompatActivity {
 
-    ArrayList<String> streetList;
-    String[] streets;
+    ArrayList<String> streetList = new ArrayList<>();
     ArrayAdapter<String> adapter;
     ListView listView;
     EditText editText;
+    int AreaId, DistrictId, CityId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +32,17 @@ public class StreetActivity extends AppCompatActivity {
 
         Bundle arguments = getIntent().getExtras();
         assert arguments != null;
-        final int AreaId = arguments.getInt("AreaId");
-        final int DistrictId = arguments.getInt("DistrictId");
-        final int CityId = arguments.getInt("CityId");
+        AreaId = arguments.getInt("AreaId");
+        DistrictId = arguments.getInt("DistrictId");
+        CityId = arguments.getInt("CityId");
         insertStreetList(AreaId, DistrictId, CityId);
 
         // autocomplete street
         listView = findViewById(R.id.list_street);
         editText = findViewById(R.id.search_street);
-        initlist();
+
+        adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtitem, streetList);
+        listView.setAdapter(adapter);
 
         final Intent intent = new Intent(this, HouseActivity.class);
 
@@ -48,15 +51,16 @@ public class StreetActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
                 String value = adapter.getItem(position);
-                for (int i = 0; i < streets.length; i++) {
+                for (int i = 0; i < streetList.size(); i++) {
                     assert value != null;
-                    if( value.equals(streets[i])) {
+                    if( value.equals(streetList.get(i))) {
 
                         intent.putExtra("StreetId", i);
                         intent.putExtra("CityId", CityId);
                         intent.putExtra("DistrictId", DistrictId);
                         intent.putExtra("AreaId", AreaId);
                         startActivity(intent);
+                        finish();
                     }
                 }
             }
@@ -68,11 +72,7 @@ public class StreetActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals("")){
-                    initlist();
-                } else {
-                    searchItem(s.toString());
-                }
+                StreetActivity.this.adapter.getFilter().filter(s);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -80,27 +80,31 @@ public class StreetActivity extends AppCompatActivity {
         });
     }
 
-    public void searchItem(String textToSearch){
-        for(String item: streets){
-            if(!item.contains(textToSearch)){
-                streetList.remove(item);
-            }
+    @Override
+    public void onBackPressed() {
+        if (AreaId == 4)
+        {
+            Intent intent = new Intent(this, RegionActivity.class);
+            startActivity(intent);
+            finish();
         }
-        adapter.notifyDataSetChanged();
-    }
-
-    public void initlist(){
-        streetList = new ArrayList<>(Arrays.asList(streets));
-        adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtitem, streetList);
-        listView.setAdapter(adapter);
+        else
+        {
+            Intent intent = new Intent(this, CityActivity.class);
+            intent.putExtra("DistrictId", DistrictId);
+            intent.putExtra("AreaId", AreaId);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void insertStreetList(int AreaId, int DistrictId, int CityId)
     {
-        streets = new String[SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.size()];
         for(int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.size(); i++)
         {
-            streets[i] = SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(i).streetName.toLowerCase();
+            streetList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(i).streetType + " "
+                    + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(i).streetName);
         }
+        Collections.sort(streetList);
     }
 }

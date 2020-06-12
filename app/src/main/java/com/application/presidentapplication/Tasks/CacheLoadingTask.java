@@ -15,10 +15,10 @@ import java.util.ArrayList;
 public class CacheLoadingTask  extends AsyncTask<Void, Void, Boolean> {
 
     private final RSSDatabase db;
-    private final SwipeRefreshLayout mSwipeLayout;
+    private SwipeRefreshLayout mSwipeLayout;
     private ArrayList<RSSPost> loaded_posts;
     private RecyclerView mRecyclerView;
-    private final Activity context;
+    private  Activity context;
 
     public CacheLoadingTask(RSSDatabase db, Activity context, RecyclerView recyclerView, SwipeRefreshLayout mSwipeLayout) {
         this.db = db;

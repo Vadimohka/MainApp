@@ -11,8 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.application.presidentapplication.JSONClass.District;
+import com.application.presidentapplication.JSONClass.Region;
 import com.application.presidentapplication.JSONClass.Spot;
 import com.application.presidentapplication.R;
 import com.google.gson.Gson;
@@ -25,17 +26,17 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class CityActivity extends AppCompatActivity {
 
-    ArrayList<String> cityList;
-    String[] cities;
+    ArrayList<String> cityList = new ArrayList<>();
     ArrayAdapter<String> adapter;
     ListView listView;
     EditText editText;
     HashMap<String,Spot> dictionary;
+    int AreaId, DistrictId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +44,15 @@ public class CityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_city);
 
         Bundle arguments = getIntent().getExtras();
-        final int AreaId = arguments.getInt("AreaId");
-        final int DistrictId = arguments.getInt("DistrictId");
+        AreaId = arguments.getInt("AreaId");
+        DistrictId = arguments.getInt("DistrictId");
         insertCityList(AreaId, DistrictId);
 
         listView = findViewById(R.id.list_city);
         editText = findViewById(R.id.search_city);
-        initlist();
+
+        adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtitem, cityList);
+        listView.setAdapter(adapter);
 
         final Intent intent = new Intent(this, StreetActivity.class);
         final Intent toMain = new Intent(this, MainActivity.class);
@@ -58,9 +61,9 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 String value = adapter.getItem(position);
-                for (int i = 0; i < cities.length; i++) {
+                for (int i = 0; i < cityList.size(); i++) {
                     assert value != null;
-                    if( value.equals(cities[i])) {
+                    if( value.equals(cityList.get(i))) {
                         if (!(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).citySpotId == null)) {
                             readSpotJson();
                             Spot spot = dictionary.get(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).citySpotId);
@@ -85,6 +88,7 @@ public class CityActivity extends AppCompatActivity {
                             intent.putExtra("DistrictId", DistrictId);
                             intent.putExtra("AreaId", AreaId);
                             startActivity(intent);
+                            finish();
                         }
                     }
                 }
@@ -98,11 +102,7 @@ public class CityActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals("")){
-                    initlist();
-                } else {
-                    searchItem(s.toString());
-                }
+                CityActivity.this.adapter.getFilter().filter(s);
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -110,30 +110,23 @@ public class CityActivity extends AppCompatActivity {
         });
     }
 
-    public void searchItem(String textToSearch){
-        for(String item: cities){
-            if(!item.contains(textToSearch)){
-                cityList.remove(item);
-            }
-        }
-        adapter.notifyDataSetChanged();
+    @Override
+    public void onBackPressed() {
+            Intent city = new Intent(this, DistrictActivity.class);
+            city.putExtra("AreaId", AreaId);
+            startActivity(city);
+            finish();
     }
-
-    public void initlist() {
-        cityList = new ArrayList<>(Arrays.asList(cities));
-        adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtitem, cityList);
-        listView.setAdapter(adapter);
-    }
-
 
     private void insertCityList(int AreaId, int DistrictId)
     {
-        cities = new String[SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size()];
         for(int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size(); i++)
         {
-            cities[i] = SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName.toLowerCase() +  " " +
-                    SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName.toLowerCase();
+            cityList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName +  " " +
+                    SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName + " "
+                    + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityCategory);
         }
+        Collections.sort(cityList);
     }
 
     public void readSpotJson(){

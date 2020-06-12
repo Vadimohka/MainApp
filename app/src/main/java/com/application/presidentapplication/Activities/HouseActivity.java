@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.application.presidentapplication.JSONClass.Spot;
 import com.application.presidentapplication.R;
@@ -22,6 +21,7 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 
@@ -29,6 +29,8 @@ public class HouseActivity extends AppCompatActivity {
 
     ArrayList<String> houseList = new ArrayList<>();
     HashMap<String,Spot> dictionary;
+    int AreaId, DistrictId, CityId, StreetId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +38,17 @@ public class HouseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_house);
 
         Bundle arguments = getIntent().getExtras();
-        assert arguments != null;
-        final int AreaId = arguments.getInt("AreaId");
-        final int DistrictId = arguments.getInt("DistrictId");
-        final int CityId = arguments.getInt("CityId");
-        final int StreetId = arguments.getInt("StreetId");
-        final Intent intent = new Intent(this, MainActivity.class);
+        AreaId = arguments.getInt("AreaId");
+        DistrictId = arguments.getInt("DistrictId");
+        CityId = arguments.getInt("CityId");
+        StreetId = arguments.getInt("StreetId");
+
         insertHouseList(AreaId, DistrictId, CityId, StreetId);
         GridView GList = findViewById(R.id.gridview_house);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, houseList);
         GList.setAdapter(adapter);
+
+        final Intent intent = new Intent(this, MainActivity.class);
 
         GList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -72,6 +75,16 @@ public class HouseActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, StreetActivity.class);
+        intent.putExtra("CityId", CityId);
+        intent.putExtra("DistrictId", DistrictId);
+        intent.putExtra("AreaId", AreaId);
+        startActivity(intent);
+        finish();
+    }
+
 
     public void readSpotJson() {
         try {
@@ -95,5 +108,6 @@ public class HouseActivity extends AppCompatActivity {
         {
             houseList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).houseNumber);
         }
+        Collections.sort(houseList);
     }
 }
