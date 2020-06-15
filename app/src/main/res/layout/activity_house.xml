@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <GridView
-        android:id="@+id/gridview_house"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:cacheColorHint="@android:color/darker_gray"
-        android:numColumns="4"
-        android:gravity="center"
-        android:stretchMode="columnWidth"/>
-
-</LinearLayout>
+    android:layout_height="wrap_content"
+    android:id="@+id/gridview_house"
+    android:cacheColorHint="@android:color/darker_gray"
+    android:horizontalSpacing="10dp"
+    android:numColumns="4"
+    android:padding="20dp"
+    android:verticalSpacing="10dp">
+</GridView>

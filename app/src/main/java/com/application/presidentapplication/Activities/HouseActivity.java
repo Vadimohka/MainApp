@@ -44,8 +44,9 @@ public class HouseActivity extends AppCompatActivity {
         StreetId = arguments.getInt("StreetId");
 
         insertHouseList(AreaId, DistrictId, CityId, StreetId);
+        Collections.sort(houseList);
         GridView GList = findViewById(R.id.gridview_house);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, houseList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.grid_item, houseList);
         GList.setAdapter(adapter);
 
         final Intent intent = new Intent(this, MainActivity.class);
@@ -108,6 +109,5 @@ public class HouseActivity extends AppCompatActivity {
         {
             houseList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(StreetId).houseList.get(i).houseNumber);
         }
-        Collections.sort(houseList);
     }
 }

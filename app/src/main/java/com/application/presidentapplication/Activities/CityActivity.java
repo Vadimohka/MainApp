@@ -122,8 +122,8 @@ public class CityActivity extends AppCompatActivity {
     {
         for(int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size(); i++)
         {
-            cityList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName +  " " +
-                    SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName + " "
+            cityList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName + " "
+                   + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName + " "
                     + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityCategory);
         }
         Collections.sort(cityList);
