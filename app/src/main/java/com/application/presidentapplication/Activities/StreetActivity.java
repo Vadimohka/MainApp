@@ -53,7 +53,8 @@ public class StreetActivity extends AppCompatActivity {
                 String value = adapter.getItem(position);
                 for (int i = 0; i < streetList.size(); i++) {
                     assert value != null;
-                    if( value.equals(streetList.get(i))) {
+                    if( value.equals(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(i).streetName + " "
+                            + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(CityId).streetList.get(i).streetType)) {
 
                         intent.putExtra("StreetId", i);
                         intent.putExtra("CityId", CityId);

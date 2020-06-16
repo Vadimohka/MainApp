@@ -63,7 +63,9 @@ public class CityActivity extends AppCompatActivity {
                 String value = adapter.getItem(position);
                 for (int i = 0; i < cityList.size(); i++) {
                     assert value != null;
-                    if( value.equals(cityList.get(i))) {
+                    if( value.equals(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName + " "
+                            + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName + " "
+                            + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityCategory)) {
                         if (!(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).citySpotId == null)) {
                             readSpotJson();
                             Spot spot = dictionary.get(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).citySpotId);
@@ -118,8 +120,7 @@ public class CityActivity extends AppCompatActivity {
             finish();
     }
 
-    private void insertCityList(int AreaId, int DistrictId)
-    {
+    private void insertCityList(int AreaId, int DistrictId) {
         for(int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size(); i++)
         {
             cityList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName + " "

@@ -52,7 +52,7 @@ public class DistrictActivity extends AppCompatActivity {
                 String value = adapter.getItem(position);
                 for (int i = 0; i < districtList.size(); i++) {
                     assert value != null;
-                    if( value.equals(districtList.get(i)))
+                    if( value.equals(SplashActivity.regionList.regionList.get(AreaId).districtList.get(i).districtName))
                     {
                         intent.putExtra("DistrictId", i);
                         intent.putExtra("AreaId",AreaId);
@@ -85,9 +85,9 @@ public class DistrictActivity extends AppCompatActivity {
         finish();
     }
 
-    private void insertDistrictList(int id) {
-        for (int j = 0; j < SplashActivity.regionList.regionList.get(id).districtList.size(); j++) {
-            districtList.add(SplashActivity.regionList.regionList.get(id).districtList.get(j).districtName);
+    private void insertDistrictList(int AreaId) {
+        for (int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.size(); i++) {
+            districtList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(i).districtName);
         }
         Collections.sort(districtList);
     }

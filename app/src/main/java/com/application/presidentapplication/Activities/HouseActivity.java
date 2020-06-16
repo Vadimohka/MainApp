@@ -44,7 +44,6 @@ public class HouseActivity extends AppCompatActivity {
         StreetId = arguments.getInt("StreetId");
 
         insertHouseList(AreaId, DistrictId, CityId, StreetId);
-        Collections.sort(houseList);
         GridView GList = findViewById(R.id.gridview_house);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.grid_item, houseList);
         GList.setAdapter(adapter);
