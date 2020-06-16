@@ -14,7 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.application.presidentapplication.Activities.MainActivity;
 import com.application.presidentapplication.Activities.RegionActivity;
 import com.application.presidentapplication.JSONClass.Spot;
 import com.application.presidentapplication.R;
