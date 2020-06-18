@@ -6,21 +6,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.application.presidentapplication.Activities.RegionActivity;
 import com.application.presidentapplication.JSONClass.Spot;
 import com.application.presidentapplication.R;
+import com.google.android.gms.maps.*;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
+import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -29,10 +34,14 @@ public class HomeFragment extends Fragment {
 
     Spot spot = new Spot();
     boolean flag = false;
+    MapView mMapView;
+    private GoogleMap googleMap;
+    Button find;
+    ImageView homespot;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         View root = inflater.inflate(R.layout.fragment_home_begin, container, false);
 
         try {
@@ -43,47 +52,128 @@ public class HomeFragment extends Fragment {
             Gson gson = new Gson();
             spot = gson.fromJson(jsonString, Spot.class);
             br.close();
-            TextView textViewAddress = root.findViewById(R.id.spotAddress);
-            textViewAddress.setText(spot.address);
-            TextView textViewInfo = root.findViewById(R.id.spotInfo);
-            textViewInfo.setText(spot.spotInfo);
-            TextView textViewName = root.findViewById(R.id.spotName);
-            textViewName.setText(spot.spotName);
-            TextView textViewPhoneNumber = root.findViewById(R.id.spotPhoneNumber);
-            textViewPhoneNumber.setText(spot.phoneNumber);
-            ImageView imageView = root.findViewById(R.id.homespot);
-            imageView.setVisibility(View.GONE);
             flag = true;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        TextView textViewAddress = root.findViewById(R.id.spotAddress);
+        TextView textViewInfo = root.findViewById(R.id.spotInfo);
+        TextView textViewName = root.findViewById(R.id.spotName);
+        mMapView = root.findViewById(R.id.gmap);
+        mMapView.onCreate(savedInstanceState);
+        mMapView.onResume(); // needed to get the map to display immediately
 
-        //DO NOT TOUCH
-        //MAP
-        Button map = root.findViewById(R.id.button_map);
-        if (flag)
-            map.setVisibility(View.VISIBLE);
-        map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View veiw) {
-                String geoUriString = "geo:"+ spot.X + ", " + spot.Y + "?z=7";
-                Uri geoUri = Uri.parse(geoUriString);
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, geoUri);
-                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivity(mapIntent);
+
+        if (flag) {
+
+            textViewAddress.setText(spot.address);
+            textViewInfo.setText(spot.spotInfo);
+            textViewName.setText(spot.spotName);
+
+            try {
+                MapsInitializer.initialize(getActivity().getApplicationContext());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //DO NOT TOUCH
+            //MAP
+            Button BigMap = root.findViewById(R.id.button_map);
+            BigMap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View veiw) {
+                    String geoUriString = "geo:" + spot.X + ", " + spot.Y + "?z=7";
+                    Uri geoUri = Uri.parse(geoUriString);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, geoUri);
+                    if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                        startActivity(mapIntent);
+                    }
                 }
-            }
-        });
-        //END MAP
+            });
+            //END MAP
 
-        Button find = root.findViewById(R.id.button_spot);
-        find.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), RegionActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+            Button findNew = root.findViewById(R.id.button_newSpot);
+            findNew.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), RegionActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            });
+
+        }
+        else
+        {
+            find = root.findViewById(R.id.button_spot);
+            find.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), RegionActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            });
+
+            find.setVisibility(View.VISIBLE);
+
+            homespot = root.findViewById(R.id.homespot);
+            homespot.setVisibility(View.VISIBLE);
+
+            CardView cardView = root.findViewById(R.id.cardView);
+            cardView.setVisibility(View.GONE);
+
+            Button newspot = root.findViewById(R.id.button_newSpot);
+            Button newhouse = root.findViewById(R.id.button_newHouse);
+            newspot.setVisibility(View.GONE);
+            newhouse.setVisibility(View.GONE);
+
+
+            mMapView.setVisibility(View.GONE);
+        }
+
+        mMapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap mMap) {
+                googleMap = mMap;
+
+                try {
+                    // For dropping a marker at a point on the Map
+                    LatLng sydney = new LatLng(Double.parseDouble(spot.X), Double.parseDouble(spot.Y));
+                    googleMap.addMarker(new MarkerOptions().position(sydney).title("Ваш участок для голосования").snippet(spot.spotInfo));
+
+                    // For zooming automatically to the location of the marker
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(17).build();
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
             }
         });
+
         return root;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mMapView.onLowMemory();
     }
 }
