@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -42,7 +43,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final ScrollView mScrollView = root.findViewById(R.id.scrollViewHome); //parent scrollview in xml, give your scrollview id value
 
         try {
             // открываем поток для чтения
@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
         TextView textViewName = root.findViewById(R.id.spotName);
         mMapView = root.findViewById(R.id.gmap);
         mMapView.onCreate(savedInstanceState);
-        mMapView.onResume(); // needed to get the map to display immediately
+        mMapView.onResume();
 
 
         if (flag) {
@@ -82,9 +82,7 @@ public class HomeFragment extends Fragment {
             BigMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View veiw) {
-                    String geoUriString = "geo:" + spot.X + ", " + spot.Y + "?z=7";
-                    Uri geoUri = Uri.parse(geoUriString);
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, geoUri);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + spot.X + ", " + spot.Y));
                     if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
                         startActivity(mapIntent);
                     }
