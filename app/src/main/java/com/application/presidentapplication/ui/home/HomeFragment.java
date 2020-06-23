@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,8 +23,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
-
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,7 +41,8 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home_begin, container, false);
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        final ScrollView mScrollView = root.findViewById(R.id.scrollViewHome); //parent scrollview in xml, give your scrollview id value
 
         try {
             // открываем поток для чтения
@@ -122,13 +122,12 @@ public class HomeFragment extends Fragment {
             cardView.setVisibility(View.GONE);
 
             Button newspot = root.findViewById(R.id.button_newSpot);
-            Button newhouse = root.findViewById(R.id.button_newHouse);
             newspot.setVisibility(View.GONE);
-            newhouse.setVisibility(View.GONE);
 
 
             mMapView.setVisibility(View.GONE);
         }
+
 
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -141,17 +140,17 @@ public class HomeFragment extends Fragment {
                     googleMap.addMarker(new MarkerOptions().position(sydney).title("Ваш участок для голосования").snippet(spot.spotInfo));
 
                     // For zooming automatically to the location of the marker
-                    CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(17).build();
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(16).build();
                     googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 }catch (Exception e)
                 {
                     e.printStackTrace();
                 }
-
             }
         });
 
         return root;
+
     }
     @Override
     public void onResume() {

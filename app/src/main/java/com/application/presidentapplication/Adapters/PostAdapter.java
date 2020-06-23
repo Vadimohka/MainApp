@@ -23,7 +23,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.RSSPostViewHol
 
     static public class RSSPostViewHolder extends RecyclerView.ViewHolder{
         final TextView postTitleView;
-        final TextView postDateView;
+        //final TextView postDateView;
         final TextView postContentView;
 
         final View rssFeedView;
@@ -31,7 +31,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.RSSPostViewHol
         RSSPostViewHolder(View v) {
             super(v);
             rssFeedView = v;
-            postDateView = v.findViewById(R.id.postDateLabel);
+            //postDateView = v.findViewById(R.id.postDateLabel);
             postTitleView = v.findViewById(R.id.postTitleLabel);
             postContentView = v.findViewById(R.id.postContent);
         }
@@ -54,7 +54,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.RSSPostViewHol
     public void onBindViewHolder(final RSSPostViewHolder holder, int position) {
         final RSSPost rssFeedModel = posts.get(position);
         holder.postTitleView.setText(rssFeedModel.getTitle());
-        holder.postDateView.setText(rssFeedModel.getDate());
+        //holder.postDateView.setText(rssFeedModel.getDate());
         holder.postContentView.setText(rssFeedModel.getContent());
         holder.rssFeedView.setOnClickListener(new View.OnClickListener() {
             @Override

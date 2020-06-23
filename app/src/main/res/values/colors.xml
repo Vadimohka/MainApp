@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00E676</color>
+    <color name="colorPrimary">#33D34F</color>
     <color name="colorPrimaryDark">@android:color/white</color>
     <color name="colorAccent">@android:color/white</color>
     <color name="actionbar_text_color">@android:color/black</color>
-    <color name="gray">#EEEEEE</color>
+    <color name="gray">#EBEBEB</color>
 </resources>
