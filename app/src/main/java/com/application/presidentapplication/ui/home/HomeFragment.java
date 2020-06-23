@@ -8,9 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -38,6 +36,7 @@ public class HomeFragment extends Fragment {
     private GoogleMap googleMap;
     Button find;
     ImageView homespot;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -150,6 +149,7 @@ public class HomeFragment extends Fragment {
         return root;
 
     }
+
     @Override
     public void onResume() {
         super.onResume();

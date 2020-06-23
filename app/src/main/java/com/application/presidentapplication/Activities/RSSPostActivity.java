@@ -18,7 +18,6 @@ import java.io.File;
 public class RSSPostActivity extends AppCompatActivity {
     private WebView webView;
     private String link;
-    private ProgressBar progressBar;
     private int postIndex;
 
     @Override
@@ -38,13 +37,11 @@ public class RSSPostActivity extends AppCompatActivity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                progressBar.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                progressBar.setVisibility(View.GONE);
             }
         });
         webView.getSettings().setLoadsImagesAutomatically(true);
