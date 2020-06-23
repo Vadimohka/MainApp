@@ -65,6 +65,7 @@ public class RSSFeedControl extends AsyncTask<Void, Integer, Boolean> {
         super.onProgressUpdate(integers);
         final int i = integers[0];
         WebView view = new WebView(context);
+        view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new WebViewClient()
         {
             @Override
@@ -145,19 +146,6 @@ public class RSSFeedControl extends AsyncTask<Void, Integer, Boolean> {
                                 }
                             rssPost.setContent(desc.toString());
                         }
-//                        else if (current.getNodeName().equalsIgnoreCase("pubDate")) {
-//                            try {
-//                                SimpleDateFormat dt = new SimpleDateFormat("dd MMMM, H:m");
-//                                SimpleDateFormat dt1 = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-//                                Date date = dt1.parse(current.getTextContent());
-//                                rssPost.setDate(dt.format(Objects.requireNonNull(date)));
-//                            }
-//                            catch (java.text.ParseException e)
-//                            {
-//                                e.printStackTrace();
-//                                rssPost.setDate(current.getTextContent());
-//                            }
-//                        }
                         else if (current.getNodeName().equalsIgnoreCase("link")) {
                             rssPost.setLink(current.getTextContent());
                         }
