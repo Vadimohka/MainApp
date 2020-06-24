@@ -1,5 +1,6 @@
 package com.application.presidentapplication.Tasks;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -60,6 +61,7 @@ public class RSSFeedControl extends AsyncTask<Void, Integer, Boolean> {
         mSwipeLayout.setRefreshing(true);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onProgressUpdate(Integer...integers) {
         super.onProgressUpdate(integers);

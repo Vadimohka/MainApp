@@ -57,17 +57,22 @@ public class HomeFragment extends Fragment {
         }
         TextView textViewAddress = root.findViewById(R.id.spotAddress);
         TextView textViewInfo = root.findViewById(R.id.spotInfo);
-        TextView textViewName = root.findViewById(R.id.spotName);
         mMapView = root.findViewById(R.id.gmap);
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume();
 
+        find = root.findViewById(R.id.button_spot);
+        find.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RegionActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         if (flag) {
-
             textViewAddress.setText(spot.address);
             textViewInfo.setText(spot.spotInfo);
-            textViewName.setText(spot.spotName);
 
             try {
                 MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -89,39 +94,14 @@ public class HomeFragment extends Fragment {
             });
             //END MAP
 
-            Button findNew = root.findViewById(R.id.button_newSpot);
-            findNew.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), RegionActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                }
-            });
-
         }
         else
         {
-            find = root.findViewById(R.id.button_spot);
-            find.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), RegionActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                }
-            });
-
-            find.setVisibility(View.VISIBLE);
-
             homespot = root.findViewById(R.id.homespot);
             homespot.setVisibility(View.VISIBLE);
 
             CardView cardView = root.findViewById(R.id.cardView);
             cardView.setVisibility(View.GONE);
-
-            Button newspot = root.findViewById(R.id.button_newSpot);
-            newspot.setVisibility(View.GONE);
-
-
             mMapView.setVisibility(View.GONE);
         }
 
@@ -133,11 +113,11 @@ public class HomeFragment extends Fragment {
 
                 try {
                     // For dropping a marker at a point on the Map
-                    LatLng sydney = new LatLng(Double.parseDouble(spot.X), Double.parseDouble(spot.Y));
-                    googleMap.addMarker(new MarkerOptions().position(sydney).title("Ваш участок для голосования").snippet(spot.spotInfo));
+                    LatLng spotCords = new LatLng(Double.parseDouble(spot.X), Double.parseDouble(spot.Y));
+                    googleMap.addMarker(new MarkerOptions().position(spotCords).title(spot.spotName));
 
                     // For zooming automatically to the location of the marker
-                    CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(16).build();
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(spotCords).zoom(17).build();
                     googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                 }catch (Exception e)
                 {

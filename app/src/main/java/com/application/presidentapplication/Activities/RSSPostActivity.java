@@ -2,8 +2,11 @@ package com.application.presidentapplication.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -20,6 +23,7 @@ public class RSSPostActivity extends AppCompatActivity {
     private String link;
     private int postIndex;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,7 @@ public class RSSPostActivity extends AppCompatActivity {
         link = getIntent().getStringExtra("link");
         postIndex = getIntent().getIntExtra("position", 0);
         webView = findViewById(R.id.post_veb_view_holder);
+        webView.getSettings().setJavaScriptEnabled(true); // enable javascript
         openURL();
     }
 

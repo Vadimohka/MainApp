@@ -20,7 +20,6 @@ import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity{
 
-    WebView webView;
     boolean flag = false;
 
     @Override
@@ -49,28 +48,11 @@ public class MainActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.bug_report:
-                webView = findViewById(R.id.web_view);
-                WebSettings webSettings = webView.getSettings();
-                // Включаем js
-                webSettings.setJavaScriptEnabled(true);
-                String urlAddress = "https://docs.google.com/forms/d/e/1FAIpQLSeWItE1wMkX4w3hSw8LSWtUmyGzPpypJkDbYi-epUbhWaDGuA/viewform";
-                webView.loadUrl(urlAddress);
-                webView.setVisibility(View.VISIBLE);
-                //return true;
+                return true;
             case R.id.info_page:
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(flag) System.exit(0);
-        else
-        {
-            flag = true;
-            webView.setVisibility(View.GONE);
-        }
     }
 
 }
