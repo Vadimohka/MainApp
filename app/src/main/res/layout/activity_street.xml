@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,7 +29,10 @@
             android:ellipsize="start"
             android:background="@null"
             android:layout_toEndOf="@id/ImgaeSearch"
-            android:hint="Найти улицу" />
+            android:hint="Найти улицу"
+            android:singleLine="true"
+            android:inputType="text"
+            android:imeOptions="actionSearch"/>
     </RelativeLayout>
 
     <ListView
