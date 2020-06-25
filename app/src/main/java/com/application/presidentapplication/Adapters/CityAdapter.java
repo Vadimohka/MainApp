@@ -56,7 +56,7 @@ public class CityAdapter extends ArrayAdapter<City> implements Filterable {
         ((TextView) convertView.findViewById(android.R.id.text1))
                 .setText(city.cityName);
         if(!city.cityCategory.equals(""))
-            text2 = city.categoryName + " "  + city.cityCategory + " cельсовет";
+            text2 = city.categoryName + ", "  + city.cityCategory + " cельсовет";
         else
         {
             text2 = city.categoryName;
