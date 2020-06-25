@@ -12,8 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.application.presidentapplication.JSONClass.District;
-import com.application.presidentapplication.JSONClass.Region;
+import com.application.presidentapplication.Adapters.CityAdapter;
+import com.application.presidentapplication.JSONClass.City;
 import com.application.presidentapplication.JSONClass.Spot;
 import com.application.presidentapplication.R;
 import com.google.gson.Gson;
@@ -25,14 +25,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class CityActivity extends AppCompatActivity {
 
-    ArrayList<String> cityList = new ArrayList<>();
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<City> adapter;
     ListView listView;
     EditText editText;
     HashMap<String,Spot> dictionary;
@@ -44,15 +41,16 @@ public class CityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_city);
 
         Bundle arguments = getIntent().getExtras();
+        assert arguments != null;
         AreaId = arguments.getInt("AreaId");
         DistrictId = arguments.getInt("DistrictId");
-        insertCityList(AreaId, DistrictId);
 
         listView = findViewById(R.id.list_city);
         editText = findViewById(R.id.search_city);
 
-        adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtitem, cityList);
+        adapter = new CityAdapter(this, SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList);
         listView.setAdapter(adapter);
+
 
         final Intent intent = new Intent(this, StreetActivity.class);
         final Intent toMain = new Intent(this, MainActivity.class);
@@ -60,12 +58,12 @@ public class CityActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                String value = adapter.getItem(position);
-                for (int i = 0; i < cityList.size(); i++) {
+                City value = adapter.getItem(position);
+                for (int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size(); i++) {
                     assert value != null;
-                    if( value.equals(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName + " "
-                            + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName + " "
-                            + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityCategory)) {
+                    if( (value.cityName + value.categoryName + value.cityCategory).equals(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName
+                            + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName
+                            + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityCategory) ) {
                         if (!(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).citySpotId == null)) {
                             readSpotJson();
                             Spot spot = dictionary.get(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).citySpotId);
@@ -120,15 +118,6 @@ public class CityActivity extends AppCompatActivity {
             finish();
     }
 
-    private void insertCityList(int AreaId, int DistrictId) {
-        for(int i = 0; i < SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.size(); i++)
-        {
-            cityList.add(SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityName + " "
-                   + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).categoryName + " "
-                    + SplashActivity.regionList.regionList.get(AreaId).districtList.get(DistrictId).cityList.get(i).cityCategory);
-        }
-        Collections.sort(cityList);
-    }
 
     public void readSpotJson(){
         try {
