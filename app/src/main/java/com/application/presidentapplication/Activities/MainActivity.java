@@ -1,13 +1,7 @@
 package com.application.presidentapplication.Activities;
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.Toast;
 
 import com.application.presidentapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,8 +13,6 @@ import androidx.navigation.ui.NavigationUI;
 
 
 public class MainActivity extends AppCompatActivity{
-
-    boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +35,6 @@ public class MainActivity extends AppCompatActivity{
         return true;
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -55,4 +46,9 @@ public class MainActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        System.exit(0);
+    }
 }

@@ -2,8 +2,10 @@ package com.application.presidentapplication.Tasks;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.view.Gravity;
@@ -61,19 +63,23 @@ public class RSSFeedControl extends AsyncTask<Void, Integer, Boolean> {
         mSwipeLayout.setRefreshing(true);
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onProgressUpdate(Integer...integers) {
         super.onProgressUpdate(integers);
         final int i = integers[0];
         WebView view = new WebView(context);
-        view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new WebViewClient()
         {
             @Override
             public void onPageFinished(WebView view, String url)
             {
                 view.saveWebArchive(context.getFilesDir().getAbsolutePath() + File.separator + i + ".mht");
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url)
+            {
+                return !Objects.equals(Uri.parse(url).getHost(), "www.belta.by");
             }
         });
         view.loadUrl(loaded_posts.get(i).getLink());

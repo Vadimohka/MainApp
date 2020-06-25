@@ -3,6 +3,7 @@ package com.application.presidentapplication.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,13 +18,13 @@ import com.application.presidentapplication.Network.NetworkStateReader;
 import com.application.presidentapplication.R;
 
 import java.io.File;
+import java.util.Objects;
 
 public class RSSPostActivity extends AppCompatActivity {
     private WebView webView;
     private String link;
     private int postIndex;
 
-    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,6 @@ public class RSSPostActivity extends AppCompatActivity {
         link = getIntent().getStringExtra("link");
         postIndex = getIntent().getIntExtra("position", 0);
         webView = findViewById(R.id.post_veb_view_holder);
-        webView.getSettings().setJavaScriptEnabled(true); // enable javascript
         openURL();
     }
 
@@ -47,6 +47,12 @@ public class RSSPostActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url)
+            {
+                return !Objects.equals(Uri.parse(url).getHost(), "www.belta.by");
             }
         });
         webView.getSettings().setLoadsImagesAutomatically(true);
