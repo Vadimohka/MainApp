@@ -7,7 +7,7 @@ android {
         applicationId "com.application.presidentapplication"
         minSdkVersion 22
         targetSdkVersion 30
-        versionCode 51
+        versionCode 55
         versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
