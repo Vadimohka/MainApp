@@ -1,4 +1,5 @@
 package com.application.presidentapplication.Activities;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.bug_report:
+                Intent intent = new Intent(this, ErrorActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.info_page:
                 return true;
