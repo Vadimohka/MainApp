@@ -44,7 +44,7 @@ public class ErrorActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url)
             {
-                return !Objects.equals(Uri.parse(url).getHost(), "https://docs.google.com/forms/d/e/1FAIpQLSeWItE1wMkX4w3hSw8LSWtUmyGzPpypJkDbYi-epUbhWaDGuA/viewform");
+                return !Objects.equals(Uri.parse(url).getHost(), "www.docs.google.com");
             }
         });
         webView.getSettings().setLoadsImagesAutomatically(true);

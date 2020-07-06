@@ -1,6 +1,8 @@
 package com.application.presidentapplication.ui.home;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
@@ -86,9 +89,23 @@ public class HomeFragment extends Fragment {
             BigMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View veiw) {
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + spot.X + ", " + spot.Y));
-                    if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        startActivity(mapIntent);
+                    Uri uri = Uri.parse("yandexnavi://build_route_on_map?lat_to=" + spot.X +"&lon_to=" + spot.Y);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.setPackage("ru.yandex.yandexnavi");
+
+                    PackageManager packageManager = getActivity().getPackageManager();
+                    List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+                    boolean isIntentSafe = activities.size() > 0;
+                    if (isIntentSafe)
+                    {
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + spot.X + ", " + spot.Y));
+                        if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                            startActivity(mapIntent);
+                        }
                     }
                 }
             });

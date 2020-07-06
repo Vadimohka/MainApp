@@ -2,7 +2,6 @@ package com.application.presidentapplication.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
     private void ReadModelString() {
 
         try {
-            InputStream f = getAssets().open("testAll.json");
+            InputStream f = getAssets().open("NewJson.json");
             int size = f.available();
             byte[] buffer = new byte[size];
             f.read(buffer);
