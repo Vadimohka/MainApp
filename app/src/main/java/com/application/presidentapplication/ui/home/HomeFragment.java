@@ -60,6 +60,7 @@ public class HomeFragment extends Fragment {
         }
         TextView textViewAddress = root.findViewById(R.id.spotAddress);
         TextView textViewInfo = root.findViewById(R.id.spotInfo);
+        TextView textViewTelephone = root.findViewById(R.id.spotNumber);
         mMapView = root.findViewById(R.id.gmap);
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume();
@@ -76,6 +77,8 @@ public class HomeFragment extends Fragment {
         if (flag) {
             textViewAddress.setText(spot.address);
             textViewInfo.setText(spot.spotInfo);
+            if (spot.phoneNumber != null)
+                textViewTelephone.setText(spot.phoneNumber);
 
             try {
                 MapsInitializer.initialize(getActivity().getApplicationContext());

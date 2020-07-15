@@ -2,6 +2,7 @@ package com.application.presidentapplication.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,16 +20,17 @@ import java.util.Objects;
 public class ErrorActivity extends AppCompatActivity {
 
     private WebView webView;
-    private String link = "https://docs.google.com/forms/d/e/1FAIpQLSeWItE1wMkX4w3hSw8LSWtUmyGzPpypJkDbYi-epUbhWaDGuA/viewform";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_web_view);
+        setTitle(R.string.title_error);
         webView = findViewById(R.id.post_veb_view_holder);
         openURL();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void openURL() {
         webView.setWebViewClient(new WebViewClient(){
             @Override
@@ -50,6 +52,8 @@ public class ErrorActivity extends AppCompatActivity {
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.getSettings().setJavaScriptEnabled(true);
+        String link = "https://docs.google.com/forms/d/e/1FAIpQLSeWItE1wMkX4w3hSw8LSWtUmyGzPpypJkDbYi-epUbhWaDGuA/viewform";
         if (NetworkStateReader.getConnectivityStatusString(this).equals(this.getResources().getString(R.string.no_internet)))
             Toast.makeText(this, this.getResources().getString(R.string.no_internet),Toast.LENGTH_SHORT).show();
         else

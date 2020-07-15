@@ -36,6 +36,7 @@ public class HouseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house);
+        setTitle(R.string.title_house);
 
         Bundle arguments = getIntent().getExtras();
         AreaId = arguments.getInt("AreaId");

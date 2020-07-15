@@ -3,23 +3,18 @@
     <string name="title_home">Поиск участка</string>
     <string name="title_candidat">Кандидаты</string>
     <string name="title_news">Новости</string>
-    <string name="title_spot">Информация об участке</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_region">Выбор области</string>
+    <string name="title_district">Выбор района</string>
+    <string name="title_city">Выбор населённого пункта</string>
+    <string name="title_street">Выбор улицы</string>
+    <string name="title_house">Выбор дома</string>
+    <string name="title_error">Сообщить об ошибке</string>
 
     <!--RSS STRINGS -->
     <string name="wifi">WI-FI</string>
     <string name="mobile_data">Mobile Data</string>
-
     <string name="no_internet">Нет интернет соединения</string>
     <string name="no_internet_short">Оффлайн режим</string>
     <string name="internet_short">Онлайн режим</string>
     <string name="title_activity_test">Test</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

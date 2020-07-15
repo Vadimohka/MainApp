@@ -24,7 +24,7 @@ public class CandidatFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_candidat, container, false);
         candidatList.add(new Candidat("Лукашенко","Александр Григорьевич",R.drawable.lukashenko));
-        candidatList.add(new Candidat("Бабарико","Виктор Дмитриевич",R.drawable.babarico));
+        //candidatList.add(new Candidat("Бабарико","Виктор Дмитриевич",R.drawable.babarico));
         //candidatList.add(new Candidat("Цепкало","Валерий Вильямович",R.drawable.cepkalo));
         candidatList.add(new Candidat("Тихановская","Светлана Георгиевна",R.drawable.tihanovskaya));
         candidatList.add(new Candidat("Конопацкая","Анна Анатольевна",R.drawable.konopackaya));

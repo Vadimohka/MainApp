@@ -32,6 +32,7 @@ public class DistrictActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_district);
+        setTitle(R.string.title_district);
         final Bundle arguments = getIntent().getExtras();
         assert arguments != null;
         AreaId = arguments.getInt("AreaId");

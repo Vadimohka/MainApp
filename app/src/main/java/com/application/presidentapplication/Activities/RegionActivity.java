@@ -20,6 +20,7 @@ public class RegionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region);
+        setTitle(R.string.title_region);
 
         final Intent intent = new Intent(this,DistrictActivity.class);
         final Intent toStreet = new Intent(this, StreetActivity.class);

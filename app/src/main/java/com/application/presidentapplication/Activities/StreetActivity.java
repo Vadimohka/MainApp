@@ -27,6 +27,7 @@ public class StreetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_street);
+        setTitle(R.string.title_street);
 
         Bundle arguments = getIntent().getExtras();
         assert arguments != null;

@@ -1,4 +1,5 @@
 package com.application.presidentapplication.Activities;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -6,6 +7,7 @@ import android.view.MenuItem;
 
 import com.application.presidentapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -38,13 +40,10 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.bug_report:
-                Intent intent = new Intent(this, ErrorActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.info_page:
-                return true;
+        if (item.getItemId() == R.id.bug_report) {
+            Intent intent = new Intent(this, ErrorActivity.class);
+            startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
