@@ -1,9 +1,7 @@
-package com.application.presidentapplication.ui.home;
+package com.application.presidentapplication.Fragments.home;
+
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +26,6 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 
 public class HomeFragment extends Fragment {
@@ -92,24 +89,12 @@ public class HomeFragment extends Fragment {
             BigMap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View veiw) {
-                    Uri uri = Uri.parse("yandexnavi://build_route_on_map?lat_to=" + spot.X +"&lon_to=" + spot.Y);
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    intent.setPackage("ru.yandex.yandexnavi");
-
-                    PackageManager packageManager = getActivity().getPackageManager();
-                    List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
-                    boolean isIntentSafe = activities.size() > 0;
-                    if (isIntentSafe)
-                    {
-                        startActivity(intent);
-                    }
-                    else
-                    {
-                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + spot.X + ", " + spot.Y));
-                        if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                            startActivity(mapIntent);
-                        }
-                    }
+                    DialogMapFragment dialog = new DialogMapFragment();
+                    Bundle args = new Bundle();
+                    args.putString("X", spot.X);
+                    args.putString("Y",spot.Y);
+                    dialog.setArguments(args);
+                    dialog.show(getActivity().getSupportFragmentManager(), null);
                 }
             });
             //END MAP
@@ -146,9 +131,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        return root;
 
+
+        return root;
     }
+
 
     @Override
     public void onResume() {
@@ -173,4 +160,5 @@ public class HomeFragment extends Fragment {
         super.onLowMemory();
         mMapView.onLowMemory();
     }
+
 }

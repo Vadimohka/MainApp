@@ -1,4 +1,4 @@
-package com.application.presidentapplication.ui.news;
+package com.application.presidentapplication.Fragments.news;
 
 import android.content.Context;
 import android.content.SharedPreferences;

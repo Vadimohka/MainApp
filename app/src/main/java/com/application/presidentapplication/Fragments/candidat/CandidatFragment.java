@@ -1,4 +1,4 @@
-package com.application.presidentapplication.ui.candidat;
+package com.application.presidentapplication.Fragments.candidat;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,9 +27,9 @@ public class CandidatFragment extends Fragment {
         //candidatList.add(new Candidat("Бабарико","Виктор Дмитриевич",R.drawable.babarico));
         //candidatList.add(new Candidat("Цепкало","Валерий Вильямович",R.drawable.cepkalo));
         candidatList.add(new Candidat("Тихановская","Светлана Георгиевна",R.drawable.tihanovskaya));
-        candidatList.add(new Candidat("Конопацкая","Анна Анатольевна",R.drawable.konopackaya));
         candidatList.add(new Candidat("Дмитриев","Андрей Владимирович",R.drawable.dmitriev));
         candidatList.add(new Candidat("Черечень","Сергей Владимирович",R.drawable.cherechen));
+        candidatList.add(new Candidat("Конопацкая","Анна Анатольевна",R.drawable.konopackaya));
 
         GridView GList = root.findViewById(R.id.gridview_candidat);
         CandidatAdapter adapter = new CandidatAdapter(root.getContext(), candidatList);
