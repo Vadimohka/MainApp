@@ -15,28 +15,45 @@
         android:icon="@mipmap/brsm_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/brsm_icon_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:screenOrientation="portrait">
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activities.KonopackayaActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.CherechenActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.DmitrievActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.TihanovskayaActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.LukashenkoActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBXc16vDqOxVbfMH7hXOH9FxWxluh1qJLk" />
 
-        <activity android:name=".Activities.ErrorActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.HouseActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.StreetActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.CityActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.DistrictActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.RegionActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.RSSPostActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.ErrorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.HouseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.StreetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.CityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.DistrictActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.RegionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.RSSPostActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name"

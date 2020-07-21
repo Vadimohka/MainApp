@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment {
         if (flag) {
             textViewAddress.setText(spot.address);
             textViewInfo.setText(spot.spotInfo);
-            if (spot.phoneNumber != null)
+            if (!spot.phoneNumber.equals(""))
                 textViewTelephone.setText(spot.phoneNumber);
 
             try {

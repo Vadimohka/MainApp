@@ -56,7 +56,6 @@ public class DialogMapFragment extends DialogFragment {
                         }
                     }
                 });
-
         return builder.create();
     }
 
