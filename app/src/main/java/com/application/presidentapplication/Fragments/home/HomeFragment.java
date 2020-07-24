@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.application.presidentapplication.Activities.RegionActivity;
+import com.application.presidentapplication.Activities.SplashActivity;
 import com.application.presidentapplication.JSONClass.Spot;
 import com.application.presidentapplication.R;
 import com.google.android.gms.maps.*;
@@ -27,11 +28,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 public class HomeFragment extends Fragment {
 
     Spot spot = new Spot();
     boolean flag = false;
+    boolean allGood = false;
     MapView mMapView;
     private GoogleMap googleMap;
     Button find;
@@ -55,6 +56,8 @@ public class HomeFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
         TextView textViewAddress = root.findViewById(R.id.spotAddress);
         TextView textViewInfo = root.findViewById(R.id.spotInfo);
         TextView textViewTelephone = root.findViewById(R.id.spotNumber);
@@ -131,7 +134,24 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        if(!SplashActivity.json)
+        {
+            find.setVisibility(View.GONE);
+            Runnable runnable = new Runnable() {
+                public void run() {
+                    while (!SplashActivity.json){}
+                    allGood = true;
+                    find.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            find.setVisibility(View.VISIBLE);
+                        }
+                    });
+                }
+            };
+            Thread thread = new Thread(runnable);
+            thread.start();
+        }
 
         return root;
     }

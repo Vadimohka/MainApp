@@ -16,11 +16,9 @@
         <item name="actionBarStyle">@style/MyActionBar</item>
     </style>
 
-    <style name="AppTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowContentOverlay">@null</item>
+    <!--<style name="AppTheme.Splash" >
         <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
+    </style>-->
 
 
     <style name="AppTheme.NoActionBar">
