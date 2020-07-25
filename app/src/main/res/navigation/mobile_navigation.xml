@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/navigation_news"
         android:name="com.application.presidentapplication.Fragments.news.NewsFragment"
-        android:label="@string/title_news"
+        android:label="Новости БелТА"
         tools:layout="@layout/fragment_news" />
 
 
