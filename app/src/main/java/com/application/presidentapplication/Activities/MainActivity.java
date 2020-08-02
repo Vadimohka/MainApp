@@ -17,7 +17,6 @@ import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity{
 
-    public static RegionList regionList = new RegionList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

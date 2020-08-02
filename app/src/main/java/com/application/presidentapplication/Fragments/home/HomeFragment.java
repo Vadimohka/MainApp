@@ -23,6 +23,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
+import org.w3c.dom.Text;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -60,6 +62,7 @@ public class HomeFragment extends Fragment {
         TextView textViewAddress = root.findViewById(R.id.spotAddress);
         TextView textViewInfo = root.findViewById(R.id.spotInfo);
         TextView textViewTelephone = root.findViewById(R.id.spotNumber);
+        TextView tel = root.findViewById(R.id.tel);
         mMapView = root.findViewById(R.id.gmap);
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume();
@@ -76,9 +79,15 @@ public class HomeFragment extends Fragment {
         if (flag) {
             textViewAddress.setText(spot.address);
             textViewInfo.setText(spot.spotInfo);
-            if (!spot.phoneNumber.equals(""))
+            if (!spot.phoneNumber.equals("")) {
+                tel.setVisibility(View.VISIBLE);
                 textViewTelephone.setText(spot.phoneNumber);
-
+            }
+            else
+            {
+                textViewTelephone.setVisibility(View.GONE);
+                tel.setVisibility(View.GONE);
+            }
             try {
                 MapsInitializer.initialize(getActivity().getApplicationContext());
             } catch (Exception e) {
